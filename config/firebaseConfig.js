@@ -16,6 +16,7 @@ import 'firebase/auth'
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  firebase.firestore.settings({})
   firebase.analytics();
 
   export default firebase
