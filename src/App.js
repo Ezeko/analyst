@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import SignIn from './components/auth/signIn'
 import './App.css';
+import VerticalBar from './components/charts/verticalBar';
+import PieChart from './components/charts/pie';
+import SignUP from './components/auth/Register';
+import NavBar from './components/nav/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <NavBar />
+        <Switch>
+          <Route exact path='/' component={SignIn} />
+          <Route path='/register' component={SignUP} />
+          <Route path='/bar' component={VerticalBar} />
+          <Route path='/pie' component={PieChart} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
