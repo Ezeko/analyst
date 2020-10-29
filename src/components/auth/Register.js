@@ -11,8 +11,6 @@ const SignUP = () =>{
     return (
         <div className='app' >
         <form className='container offset-mt3'>
-            <p className='btn-large '>SIGN IN</p>
-
             <div className='input-field'>
                 <label htmlFor='firstname'> First Name</label>
                 <input type='text' id='firstname' onChange={handleChange} required />

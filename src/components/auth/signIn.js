@@ -13,7 +13,6 @@ const SignIn = () =>{
     return (
         <div className='app' >
         <form className='container offset-mt3'>
-            <p className='btn-large pulse '>SIGN IN</p>
 
             <div className='input-field'>
                 <label htmlFor='email'> Email</label>
