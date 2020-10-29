@@ -1,15 +1,14 @@
 import React from 'react'
 import { Bar } from '@reactchartjs/react-chart.js'
-import { Link } from 'react-router-dom'
 
 
 
-const VerticalBar = () => {
+const VerticalBar = (props) => {
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Savings', 'Education', 'Rent', 'Feeding', 'Entertainment', 'Feeding'],
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Amount (₦)',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -46,8 +45,7 @@ const VerticalBar = () => {
     return (
   <React.Fragment>
     <div className='header'>
-      <h1 className='title'>Vertical Bar Chart</h1>
-      <Link className='btn btn-gh' to='/pie'> Check Pie Chart</Link>
+      <h1 className='title'>Bar Chart</h1>
     </div>
     <Bar data={data} options={options} />
   </React.Fragment>
