@@ -35,7 +35,7 @@ export const registerUser = (user) => {
 
 export const logout = () => {
 
-    return (dispatch, {getFirebase}) => {
+    return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase();
 
         firebase.auth().signOut()
@@ -58,7 +58,7 @@ export const SignInUser = (user) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase();
 
-        firebase.auth().signInUserWithEmailAndPassword(
+        firebase.auth().signInWithEmailAndPassword(
             user.email, user.password
         )
         .then(()=>{

@@ -2,6 +2,7 @@ import SignedOutNavs from "./signedOutNavs"
 import SignedInNavs from './signedInNavs'
 import { connect } from "react-redux"
 import { logout } from "../../store/actions/authActions"
+import { Link } from "react-router-dom"
 
 const NavBar = (props) => {
     //console.log(props)
@@ -10,7 +11,10 @@ const NavBar = (props) => {
     return(
         <nav className='nav black'>
             <ul>
-                <li className='center'><a href='/dashboard'>Dashboard</a></li>
+                {auth.uid ?                 <li className='center'><Link to='/dashboard'>Dashboard</Link></li> :
+                <li className='center'><Link to='/'>Home</Link></li>
+                }
+
                 <ul className='right'>
                 {
                     auth.uid ? <SignedInNavs profile={profile} logout={logout} /> : <SignedOutNavs />

@@ -10,7 +10,7 @@ const SignedInNavs = ({profile, logout}) => {
                 <Link to='/budgets'>View Budgets</Link>
             </li>
             <li>
-                <Link to='/logout' onClick={logout}>Logout</Link>
+                <Link to='/' onClick={logout}>Logout</Link>
             </li>
             <li>
                 <Link to='/dashboard' className='btn-floating waves-effect'>{profile.initials}</Link>
