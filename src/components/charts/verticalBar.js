@@ -45,7 +45,7 @@ const VerticalBar = (props) => {
     return (
   <React.Fragment>
     <div className='header'>
-      <h1 className='title'></h1>
+      <h1 className='title'>Added Budgets</h1>
     </div>
     <Bar data={data} options={options} />
   </React.Fragment>
