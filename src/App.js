@@ -8,8 +8,8 @@ import NavBar from './components/nav/Navbar';
 import DashBoard from './components/dashboard';
 import LineChart from './components/charts/line';
 import History from './components/dashboard/history';
-import CreateBudget from './components/app/createBudget';
-import Budgets from './components/app/budgets';
+import CreateBudget from './components/app/budget/createBudget';
+import Budgets from './components/app/budget/budgets';
 
 function App() {
   return (

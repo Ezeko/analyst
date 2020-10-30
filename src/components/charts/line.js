@@ -31,7 +31,7 @@ const LineChart = () => {
     return(
         <React.Fragment>
             <div className='header'>
-            <h1 className='title'>Line Chart</h1>
+            <h1 className='title'>Savings</h1>
             </div>
             <Line data={data} options={options} />
         </React.Fragment>

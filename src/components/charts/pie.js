@@ -32,7 +32,7 @@ const PieChart = (props) => {
     return (
         <React.Fragment>
             <div className='header'>
-            <h1 className='title'>Pie Chart</h1>
+            <h1 className='title'></h1>
             <div className='links'>
                 
             </div>

@@ -11,7 +11,8 @@ const NavBar = (props) => {
     return(
         <nav className='nav black'>
             <ul>
-                {auth.uid ?                 <li className='center'><Link to='/dashboard'>Dashboard</Link></li> :
+                {auth.uid ?
+                <li className='center'><Link to='/dashboard'>Dashboard</Link></li> :
                 <li className='center'><Link to='/'>Home</Link></li>
                 }
 

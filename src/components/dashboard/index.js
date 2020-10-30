@@ -51,7 +51,7 @@ const DashBoard = (props) => {
                         <td>Yesterday, 6:00pm</td>
                     </tr>
                     </tbody>
-                </table>
+                </table><br />
                 <a href='/history' className='right btn'>View More</a>
             </div>
             
