@@ -15,11 +15,10 @@ import Loading from './components/reuseable/loading';
 
 const store =createStore(
   appReducer,
-  applyMiddleware(
-    compose(
-      thunk.withExtraArgument({getFirebase, getFirestore}),
+  compose(applyMiddleware(
+      thunk.withExtraArgument({getFirebase, getFirestore})),
       reduxFirestore(firebaseConfig)
-    ))
+    )
   );
 
 const properties = {

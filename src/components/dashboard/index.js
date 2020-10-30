@@ -1,7 +1,16 @@
+import { connect } from "react-redux"
+import { firestoreConnect } from "react-redux-firebase"
+import { Redirect } from "react-router-dom"
+import { compose } from "redux"
 import PieChart from "../charts/pie"
 import VerticalBar from "../charts/verticalBar"
 
-const DashBoard = () => {
+const DashBoard = (props) => {
+    const {auth} = props
+    //console.log(props)
+    if (!auth.uid){
+        return <Redirect to='/' />
+    }
     return (
         <div className='container section dashboard'>
             <div className='row'>
@@ -50,5 +59,14 @@ const DashBoard = () => {
     )
 }
 
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        auth: state.firebase.auth,
+    }
+}
 
-export default DashBoard
+export default compose( 
+    connect(mapStateToProps),
+    firestoreConnect([{collection: 'budgets'},])
+    )(DashBoard)

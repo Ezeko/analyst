@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const SignedInNavs = ({...props}) => {
+const SignedInNavs = ({profile, logout}) => {
     return(
         <React.Fragment>
             <li>
@@ -10,10 +10,10 @@ const SignedInNavs = ({...props}) => {
                 <Link to='/budgets'>View Budgets</Link>
             </li>
             <li>
-                <Link to='/logout'>Logout</Link>
+                <Link to='/logout' onClick={logout}>Logout</Link>
             </li>
             <li>
-                <Link to='/dashboard' className='btn-floating waves-effect'>UL</Link>
+                <Link to='/dashboard' className='btn-floating waves-effect'>{profile.initials}</Link>
             </li>
         </React.Fragment>
     )

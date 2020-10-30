@@ -1,24 +1,36 @@
 import React, {useState} from 'react'
+import { connect } from 'react-redux'
+import { registerUser } from '../../store/actions/authActions'
 
-const SignUP = () =>{
+const SignUP = (props) =>{
+    //console.log(props)
     const [state, setState] = useState({})
+    const {register} = props
     const handleChange = (e) => {
         setState({
             ...state,
             [e.target.id]: e.target.value
         })
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        e.target.reset();
+        register({...state})
+        props.history.replace('/dashboard')
+
+    }
     return (
         <div className='app' >
-        <form className='container offset-mt3'>
+        <form className='container' onSubmit={handleSubmit}>
             <div className='input-field'>
-                <label htmlFor='firstname'> First Name</label>
-                <input type='text' id='firstname' onChange={handleChange} required />
+                <label htmlFor='firstName'> First Name</label>
+                <input type='text' id='firstName' onChange={handleChange} required />
             </div>
 
             <div className='input-field'>
-                <label htmlFor='lastname'> Last Name</label>
-                <input type='text' id='lastname' onChange={handleChange} required />
+                <label htmlFor='lastName'> Last Name</label>
+                <input type='text' id='lastName' onChange={handleChange} required />
             </div>
 
             <div className='input-field'>
@@ -36,4 +48,11 @@ const SignUP = () =>{
     )
 }
 
-export default SignUP
+const mapDispatchToProps = (dispatch) => {
+    return {
+        register: (user) => {
+            dispatch(registerUser(user))
+        }
+    }
+}
+export default connect(null, mapDispatchToProps)(SignUP) 
