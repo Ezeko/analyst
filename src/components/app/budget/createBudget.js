@@ -5,7 +5,7 @@ import { createBudget } from '../../../store/actions/budgetActions';
 
 const CreateBudget = (props) => {
 
-    const {history, create} = props
+    const {history, create, userId, profile} = props
 
     const [state, setState] = useState({});
 
@@ -20,7 +20,11 @@ const CreateBudget = (props) => {
         e.target.reset();
         e.preventDefault();
         console.log(create);
-        create({...state})
+        create({
+            ...state,
+            userId,
+            authorName: profile.firstName + ' ' + (profile.lastName).toUpperCase()
+        })
         history.replace('/dashboard')
         
     };
@@ -58,5 +62,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         create: (budget) => dispatch(createBudget(budget))
     }
+};
+
+const mapStateToProps = (state) => {
+    return{
+        userId: state.firebase.auth.uid,
+        profile: state.firebase.profile
+    }
 }
-export default connect(null, mapDispatchToProps)(CreateBudget)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateBudget)
