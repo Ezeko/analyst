@@ -59,7 +59,7 @@ const DashBoard = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    //console.log(state)
     return {
         auth: state.firebase.auth,
         histories: state.firestore.ordered.history

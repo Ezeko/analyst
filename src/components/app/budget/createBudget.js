@@ -19,7 +19,7 @@ const CreateBudget = (props) => {
     const handleSubmit = (e) => {
         e.target.reset();
         e.preventDefault();
-        console.log(create);
+        //console.log(create);
         create({
             ...state,
             userId,
@@ -31,7 +31,9 @@ const CreateBudget = (props) => {
 
     return(
         <React.Fragment>
-        {console.log(props)}
+        {
+            //console.log(props)
+        }
             <form className='container' onSubmit={handleSubmit}>
 
                 <div className='input-field col s12'>
