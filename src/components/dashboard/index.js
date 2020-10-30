@@ -4,9 +4,10 @@ import { Redirect } from "react-router-dom"
 import { compose } from "redux"
 import PieChart from "../charts/pie"
 import VerticalBar from "../charts/verticalBar"
+import moment from 'moment'
 
 const DashBoard = (props) => {
-    const {auth} = props
+    const {auth, histories} = props
     //console.log(props)
     if (!auth.uid){
         return <Redirect to='/' />
@@ -35,21 +36,19 @@ const DashBoard = (props) => {
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>Alvin</td>
-                        <td>Added ₦50,000 to savings</td>
-                        <td>Today, 4:50pm</td>
-                    </tr>
-                    <tr>
-                        <td>Alan</td>
-                        <td>Created A new budget</td>
-                        <td>Today, 5:00pm</td>
-                    </tr>
-                    <tr>
-                        <td>Jonathan</td>
-                        <td>Added Education to budget</td>
-                        <td>Yesterday, 6:00pm</td>
-                    </tr>
+                    
+                    {
+                        histories && histories.map((history) => {
+                            return (
+                                <tr>
+                        <td>{history.name}</td>
+                        <td>{history.description}</td>
+                        <td>{moment((history.createdAt).toDate()).calendar()}</td>
+                        </tr>
+                            )
+                        })
+                    }
+                    
                     </tbody>
                 </table><br />
                 <a href='/history' className='right btn'>View More</a>
@@ -60,13 +59,14 @@ const DashBoard = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state)
+    console.log(state)
     return {
         auth: state.firebase.auth,
+        histories: state.firestore.ordered.history
     }
 }
 
 export default compose( 
     connect(mapStateToProps),
-    firestoreConnect([{collection: 'budgets'},])
+    firestoreConnect([{collection: 'budgets'}, {collection: 'history', orderBy: ['createdAt', 'desc'], limit: 5}])
     )(DashBoard)

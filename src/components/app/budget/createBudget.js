@@ -33,9 +33,20 @@ const CreateBudget = (props) => {
         <React.Fragment>
         {console.log(props)}
             <form className='container' onSubmit={handleSubmit}>
-                <div className='input-field'>
-                    <label htmlFor='title'>Budget Title</label>
-                    <input type='text' id='title' placeholder='e.g Education' onChange={handleChange} required />
+
+                <div className='input-field col s12'>
+                    <select id='title' className='browser-default' onChange={handleChange} required>
+                        <option value="" defaultValue="">Choose Budget Title</option>
+                        <option value="education">Education</option>
+                        <option value="savings">Savings</option>
+                        <option value="transport">Transport</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="rent">Rent</option>
+                        <option value="feeding">Feeding</option>
+                        <option value="gifts">Gifts</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                        <option value="others">Others</option>
+                    </select>
                 </div>
 
                 <div className='input-field'>
