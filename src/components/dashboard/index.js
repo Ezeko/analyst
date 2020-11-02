@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { firestoreConnect } from "react-redux-firebase"
-import { Redirect } from "react-router-dom"
+import { Redirect, Link} from "react-router-dom"
 import { compose } from "redux"
 import PieChart from "../charts/pie"
 import VerticalBar from "../charts/verticalBar"
@@ -40,7 +40,7 @@ const DashBoard = (props) => {
                     {
                         histories && histories.map((history) => {
                             return (
-                                <tr>
+                                <tr key={history.id}>
                         <td>{history.name}</td>
                         <td>{history.description}</td>
                         <td>{moment((history.createdAt).toDate()).calendar()}</td>
@@ -51,7 +51,8 @@ const DashBoard = (props) => {
                     
                     </tbody>
                 </table><br />
-                <a href='/history' className='right btn'>View More</a>
+                {histories ? <Link to='/history' className='right btn'>View More</Link> : ''}
+                
             </div>
             
         </div>

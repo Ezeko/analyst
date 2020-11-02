@@ -4,7 +4,7 @@ const SignedInNavs = ({profile, logout}) => {
     return(
         <React.Fragment>
             <li>
-                <Link to='/create'>Create New Budget Plan</Link>
+                <Link to='/create'>Create Budget</Link>
             </li>
             <li>
                 <Link to='/budgets'>View Budgets</Link>
