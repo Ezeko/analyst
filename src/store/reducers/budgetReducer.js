@@ -10,6 +10,15 @@ const budgetReducer = (state=initState, action) => {
         case 'CREATE_BUDGET_ERROR':
             alert('oops! an error occurred');
             return state;
+        case 'GET_BUDGET_SUCCESS':
+            //alert('budget gotten successfully')
+            return {
+                ...state,
+                histories: action.histories
+            }
+        case 'GET_BUDGET_ERROR':
+            //alert('oops! an error occurred');
+            return state;
         default:
             return state
     }

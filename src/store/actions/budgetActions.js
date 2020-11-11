@@ -12,8 +12,9 @@ export const createBudget = (budget) => {
                   },
                 body: JSON.stringify({
                     "user_id": budget.userId,
+                    "username": budget.username,
                     "amount": budget.amount,
-                    "description": "Added ₦" + budget.amount + " to " + budget.title,
+                    "description": budget.authorName + "Added ₦" + budget.amount + " to " + budget.title,
                     "budget_type": budget.title,
                     "priority": budget.priority
                 })
@@ -32,3 +33,27 @@ export const createBudget = (budget) => {
         })
     }
 } 
+
+export const getBudget = (userId) => {
+    
+    return (dispatch, getState) => {
+        
+        fetch(
+            `https://budget-analyzer.herokuapp.com/api/histories/${userId}`
+        )
+        .then(resp => resp.json())
+        .then(( res ) => {
+            console.log(res.data)
+            dispatch({
+                type: 'GET_BUDGET_SUCCESS',
+                histories: res.data
+            })
+        })
+        .catch((err) => {
+            dispatch({
+                type: 'GET_BUDGET_ERROR',
+                err
+            })
+        })
+    }
+}

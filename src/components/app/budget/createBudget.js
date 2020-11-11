@@ -23,6 +23,7 @@ const CreateBudget = (props) => {
         create({
             ...state,
             userId,
+            username: profile.firstName,
             authorName: profile.firstName + ' ' + (profile.lastName).toUpperCase()
         })
         history.replace('/dashboard')
