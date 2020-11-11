@@ -1,13 +1,26 @@
 import { connect } from "react-redux"
-import { firestoreConnect } from "react-redux-firebase"
 import { Redirect, Link} from "react-router-dom"
-import { compose } from "redux"
 import PieChart from "../charts/pie"
 import VerticalBar from "../charts/verticalBar"
 import moment from 'moment'
+import { getDashBudgets } from "../../store/actions/budgetActions"
+import { Component } from "react"
 
-const DashBoard = (props) => {
-    const {auth, histories} = props
+class DashBoard extends Component {
+    constructor(props){
+        super(props);
+        this.state = {}
+    }
+
+    componentDidMount() {
+        //console.log(this.props)
+        const {getHistories, auth} = this.props
+        
+        getHistories(auth.uid);
+    }
+
+    render(){
+        const {auth, histories} = this.props
     //console.log(props)
     if (!auth.uid){
         return <Redirect to='/' />
@@ -41,9 +54,9 @@ const DashBoard = (props) => {
                         histories && histories.map((history) => {
                             return (
                                 <tr key={history.id}>
-                        <td>{history.name}</td>
+                        <td>{history.username}</td>
                         <td>{history.description}</td>
-                        <td>{moment((history.createdAt).toDate()).calendar()}</td>
+                        <td>{moment((history.created_at)).format('ddd, MMMM Do YYYY, h:mm:ss a')}</td>
                         </tr>
                             )
                         })
@@ -57,17 +70,24 @@ const DashBoard = (props) => {
             
         </div>
     )
+    }
 }
+
 
 const mapStateToProps = (state) => {
     //console.log(state)
     return {
         auth: state.firebase.auth,
-        histories: state.firestore.ordered.history
+        histories: state.budget.histories
     }
 }
 
-export default compose( 
-    connect(mapStateToProps),
-    firestoreConnect([{collection: 'budgets'}, {collection: 'history', orderBy: ['createdAt', 'desc'], limit: 5}])
-    )(DashBoard)
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        getHistories: (userId) => dispatch(getDashBudgets(userId))
+    }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashBoard)

@@ -37,9 +37,8 @@ export const createBudget = (budget) => {
 export const getBudget = (userId) => {
     
     return (dispatch, getState) => {
-        
         fetch(
-            `https://budget-analyzer.herokuapp.com/api/histories/${userId}`
+            `https://budget-analyzer.herokuapp.com/api/histories/${userId}`,
         )
         .then(resp => resp.json())
         .then(( res ) => {
@@ -50,8 +49,34 @@ export const getBudget = (userId) => {
             })
         })
         .catch((err) => {
+            //console.log(err)
             dispatch({
                 type: 'GET_BUDGET_ERROR',
+                err
+            })
+        })
+    }
+}
+
+
+export const getDashBudgets = (userId) => {
+    
+    return (dispatch, getState) => {
+        fetch(
+            `https://budget-analyzer.herokuapp.com/api/dash/histories/${userId}`,
+        )
+        .then(resp => resp.json())
+        .then(( res ) => {
+            //console.log(res.data)
+            dispatch({
+                type: 'GET_DASH_BUDGET_SUCCESS',
+                histories: res.data
+            })
+        })
+        .catch((err) => {
+            //console.log(err)
+            dispatch({
+                type: 'GET_DASH_BUDGET_ERROR',
                 err
             })
         })
