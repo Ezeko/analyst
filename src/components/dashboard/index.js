@@ -29,11 +29,12 @@ class DashBoard extends Component {
         <div className='container section dashboard'>
             <div className='row'>
                 <div className='col m6'>
-                    <PieChart />
+                    <PieChart data={[12, 19, 3, 5, 2, 3, 24, 0]}/>
                 </div>
 
                 <div className='col m6'>
-                    <VerticalBar />
+                    <VerticalBar data={
+                    [12, 19, 3, 5, 2, 3, 24, 0]}/>
                 </div>
             </div>
             
@@ -75,7 +76,7 @@ class DashBoard extends Component {
 
 
 const mapStateToProps = (state) => {
-    //console.log(state)
+    console.log(state)
     return {
         auth: state.firebase.auth,
         histories: state.budget.histories

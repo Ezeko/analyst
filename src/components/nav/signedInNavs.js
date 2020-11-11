@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const SignedInNavs = ({profile, logout}) => {
     return(
-        <React.Fragment>
-            <li>
+        <React.Fragment >
+            <li style={{margin: 0}}>
                 <Link to='/create' className="btn-floating green darken-2">
                     <i className="material-icons">add</i>
                 </Link>
             </li>
-            <li>
+            <li style={{margin: 0}}>
                 <Link to='/budgets' className="btn-floating green"><i className="material-icons">remove_red_eye</i></Link>
             </li>
             <li>

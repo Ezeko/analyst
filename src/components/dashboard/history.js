@@ -21,7 +21,7 @@ class History extends Component{
         return (
             <React.Fragment>
                 
-                <table className='striped responsive-table container'>
+                <table className='striped container'>
             <thead>
             <tr>
                 <th>Name</th>

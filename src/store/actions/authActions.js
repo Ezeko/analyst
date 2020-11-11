@@ -5,11 +5,15 @@ export const registerUser = (user) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
 
+        let userDetail = {};
+
         firebase.auth().createUserWithEmailAndPassword(
             user.email, user.password
         )
         .then((resp) => {
             //create users instance
+            //console.log(resp)
+            userDetail = resp.user;
             return firestore.collection('users').doc(resp.user.uid).set({
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -18,12 +22,35 @@ export const registerUser = (user) => {
                 createdAt: new Date()
             })
         })
+        .then(()=> {
+            //console.log(resp)
+            console.log(userDetail.email)
+            const fullName = user.firstName + " " + user.lastName
+            return(
+                fetch(
+                    'https://budget-analyzer.herokuapp.com/api/user/create',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                          },
+                        body: JSON.stringify({
+                            "user_id": userDetail.uid,
+                            "email": userDetail.email,
+                            "username": user.firstName,
+                            "name": fullName,
+                        })
+                    }
+                )
+            )
+        })
         .then(()=>{
             dispatch({
                 type: 'REGISTRATION_SUCCESS'
             })
         })
         .catch((err) => {
+            console.log(err)
             dispatch({
                 type: 'REGISTRATION_ERROR',
                 err
