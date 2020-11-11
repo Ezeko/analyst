@@ -18,8 +18,7 @@ const NavBar = (props) => {
                 <li className='center'><Link to='/dashboard'>Dashboard</Link></li> :
                 <li className='center'><Link to='/'>Home</Link></li>
                 }
-                <a href='#'  data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                <ul id='nav-mobile' className='right hide-on-med-and-down'>
+                <ul id='nav-mobile' className='right'>
                 {
                     auth.uid ? <SignedInNavs profile={profile} logout={logout} /> : <SignedOutNavs />
                 }

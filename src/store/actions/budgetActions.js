@@ -1,26 +1,24 @@
 
 export const createBudget = (budget) => {
     
-    return (dispatch, getState, {getFirestore}) => {
-        const firestore = getFirestore();
-        const date = new Date()
-        firestore.collection('budgets').add({
-            userId: budget.userId,
-            title: budget.title,
-            amount: budget.amount,
-            priority: budget.priority,
-            createdAt: date
-        })
-        .then(()=>{
-            return (
-                firestore.collection('history').add({
-                    userId: budget.userId,
-                    name: budget.authorName,
-                    description: 'Added ₦' + budget.amount + ' to ' + budget.title,
-                    createdAt: date
+    return (dispatch, getState) => {
+        
+        fetch(
+            'https://budget-analyzer.herokuapp.com/api/history/create',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                  },
+                body: JSON.stringify({
+                    "user_id": budget.userId,
+                    "amount": budget.amount,
+                    "description": "Added ₦" + budget.amount + " to " + budget.title,
+                    "budget_type": budget.title,
+                    "priority": budget.priority
                 })
-            )
-        })
+            }
+        )
         .then(() => {
             dispatch({
                 type: 'CREATE_BUDGET_SUCCESS'
