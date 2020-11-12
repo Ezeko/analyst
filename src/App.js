@@ -1,4 +1,8 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import 'jquery/dist/jquery.min.js'; // Have to install and import jQuery because of bootstrap modal's dependency
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'materialize-css'
 import SignIn from './components/auth/signIn'
 import './App.css';
 import VerticalBar from './components/charts/verticalBar';
@@ -10,6 +14,7 @@ import LineChart from './components/charts/line';
 import History from './components/dashboard/history';
 import CreateBudget from './components/app/budget/createBudget';
 import Budgets from './components/app/budget/budgets';
+import navBarTest from './components/reuseable/navbarTest';
 
 function App() {
   return (
@@ -26,6 +31,7 @@ function App() {
           <Route path='/create' component={CreateBudget} />
           <Route path='/history' component={History} />
           <Route path='/budgets' component={Budgets} />
+          <Route path='/test-nav' component={navBarTest} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -17,9 +17,9 @@ class DashBoard extends Component {
     componentDidMount() {
         //console.log(this.props)
         const {getHistories, getBudgets,  auth} = this.props
-        
-        getHistories(auth.uid);
         getBudgets(auth.uid);
+        getHistories(auth.uid);
+ 
     }
 
     render(){
