@@ -1,33 +1,55 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { getBudgetsDetails } from '../../../store/actions/budgetActions';
 
+class Budgets extends Component{
+    constructor(props){
+        super(props)
+        this.state = {}
+    }
 
-const Budgets = () => {
+    componentDidMount(){
+        const {getBudgets, auth } = this.props;
 
-    return(
-        <React.Fragment>
-            <div className='container center'>
+        getBudgets(auth.uid)
+    }
+    render(){
+        return(
+            <React.Fragment>
+                <div className='container center'>
                     <ul className=''>
-                        <li className='collection'>
-                            <a  href='/budgets/savings' className='  collection-item'> 
-                            <span className='badge' >₦20,000</span>Savings</a>
-                        </li>
-                        <li className='collection'>
-                            <a  href='/budgets/entertainment' className='  collection-item'> 
-                            <span className='badge' >₦10,000</span>Entertainment</a>
-                        </li>
-                        <li className='collection'>
-                            <a  href='/budgets/education' className='  collection-item'> 
-                            <span className='badge' >₦250,000</span>Education</a>
-                        </li>
-                        <li className='collection'>
-                            <a  href='/budgets/feeding' className='  collection-item'> 
-                            <span className='badge' >₦20,000</span>Feeding</a>
-                        </li>
+                    {this.props.budgets && this.props.budgets !== undefined && Object.entries(this.props.budgets).map(data => {
+                        return(
+                            <li className='collection' key={data[0]}>
+                            <a  href={`/budgets/${data[0]}`} className='  collection-item'> 
+                            <span className='badge' >₦{data[1]}</span>{data[0]}</a>
+                    </li>
+                        )
+                    })}
+                    
                     </ul>
-                
-            </div>
-        </React.Fragment>
-    );
+                </div>
+            
+            </React.Fragment>
+        )
+    }
 }
 
-export default Budgets
+
+const mapStateToProps = (state) => {
+    //console.log(state)
+    return {
+        auth: state.firebase.auth,
+        budgets: state.budget.budgets
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+
+        getBudgets: (userId) => dispatch(getBudgetsDetails(userId))
+    }
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Budgets)
