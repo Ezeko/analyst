@@ -3,25 +3,36 @@ import { Redirect, Link} from "react-router-dom"
 import PieChart from "../charts/pie"
 import VerticalBar from "../charts/verticalBar"
 import moment from 'moment'
-import { getDashBudgets } from "../../store/actions/budgetActions"
+import { getBudgetsDetails, getDashBudgets } from "../../store/actions/budgetActions"
 import { Component } from "react"
 
 class DashBoard extends Component {
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            data: []
+        }
     }
 
     componentDidMount() {
         //console.log(this.props)
-        const {getHistories, auth} = this.props
+        const {getHistories, getBudgets,  auth} = this.props
         
         getHistories(auth.uid);
+        getBudgets(auth.uid);
     }
 
     render(){
         const {auth, histories} = this.props
-    //console.log(props)
+        const values = []
+        let addedValues = 0;
+        for (const stuff in this.props.budgets){
+            values.push(this.props.budgets[stuff])
+            addedValues += this.props.budgets[stuff]
+            console.log(stuff, this.props.budgets[stuff])
+        }
+        console.log('values', values)
+
     if (!auth.uid){
         return <Redirect to='/' />
     }
@@ -29,17 +40,24 @@ class DashBoard extends Component {
         <div className='container section dashboard'>
             <div className='row'>
                 <div className='col m6'>
-                    <PieChart data={[12, 19, 3, 5, 2, 3, 24, 0]}/>
+                    {addedValues > 0 ?
+                    <PieChart data={values}/>
+                    : null
+                    }
                 </div>
 
                 <div className='col m6'>
+                    {addedValues > 0 ?
                     <VerticalBar data={
-                    [12, 19, 3, 5, 2, 3, 24, 0]}/>
+                    values}/>
+                    : null
+                    }
                 </div>
             </div>
             
-
+            {histories  && histories.length > 0 ?
             <div>
+                
                 <table className='striped responsive-table'>
                     <thead>
                     <tr>
@@ -65,9 +83,11 @@ class DashBoard extends Component {
                     
                     </tbody>
                 </table><br />
-                {histories ? <Link to='/history' className='right btn'>View More</Link> : ''}
+                <Link to='/history' className='right btn'>View More</Link>
                 
             </div>
+            : <h1>Welcome, You have no transaction yet. Click <Link to='/create'>Here</Link> to Add Budget</h1>
+            }
             
         </div>
     )
@@ -76,17 +96,19 @@ class DashBoard extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    //console.log(state)
     return {
         auth: state.firebase.auth,
-        histories: state.budget.histories
+        histories: state.budget.histories,
+        budgets: state.budget.budgets
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        getHistories: (userId) => dispatch(getDashBudgets(userId))
+        getHistories: (userId) => dispatch(getDashBudgets(userId)),
+        getBudgets: (userId) => dispatch(getBudgetsDetails(userId))
     }
 
 }

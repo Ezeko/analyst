@@ -28,6 +28,15 @@ const budgetReducer = (state=initState, action) => {
         case 'GET_DASH_BUDGET_ERROR':
             //alert('oops! an error occurred');
             return state;
+        case 'GET_BUDGET_DETAILS_SUCCESS':
+        //alert('budget gotten successfully')
+        return {
+            ...state,
+            budgets: action.budgets
+        }
+        case 'GET_BUDGET_DETAILS_ERROR':
+            //alert('oops! an error occurred');
+            return state;
         default:
             return state
     }

@@ -82,3 +82,28 @@ export const getDashBudgets = (userId) => {
         })
     }
 }
+
+export const getBudgetsDetails = (userId) => {
+    
+    return (dispatch, getState) => {
+        fetch(
+            `https://budget-analyzer.herokuapp.com/api/budgets/${userId}`,
+        )
+        .then(resp => resp.json())
+        .then(( res ) => {
+            //console.log(res.data)
+            dispatch({
+                type: 'GET_BUDGET_DETAILS_SUCCESS',
+                budgets: res.data
+            })
+        })
+        .catch((err) => {
+            //console.log(err)
+            dispatch({
+                type: 'GET_BUDGET_DETAILS_ERROR',
+                err
+            })
+        })
+    }
+}
+

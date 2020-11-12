@@ -4,7 +4,7 @@ import { Pie } from '@reactchartjs/react-chart.js'
 
 const PieChart = (props) => {
     const data = {
-        labels: ['Savings', 'Education', 'Rent', 'Feeding', 'Entertainment', 'Gifts', 'Miscellaneous', 'Others'],
+        labels: ['Savings', 'Education', 'Rent', 'Feeding', 'Entertainment', 'Gifts', 'Miscellaneous', 'Others', 'Transport'],
         datasets: [
           {
             label: 'Amount (₦)',
@@ -18,6 +18,7 @@ const PieChart = (props) => {
               'rgba(255, 159, 64, 0.2)',
               'rgba(87, 0, 78,0.2)',
               'rgba(23,89,199,0.2)',
+              'rgba(0,67,88,0.2)',
             ],
             borderColor: [
               'rgba(255, 99, 132, 1)',
@@ -27,7 +28,8 @@ const PieChart = (props) => {
               'rgba(153, 102, 255, 1)',
               'rgba(255, 159, 64, 1)',
               'rgba(87, 0, 78,1)',
-              'rgba(23,89,199,0.2)',
+              'rgba(23,89,199,1)',
+              'rgba(0,67,88,1)',
             ],
             borderWidth: 1,
           },

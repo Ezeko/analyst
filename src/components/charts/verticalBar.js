@@ -5,7 +5,7 @@ import { Bar } from '@reactchartjs/react-chart.js'
 
 const VerticalBar = (props) => {
     const data = {
-        labels: ['Savings', 'Education', 'Rent', 'Feeding', 'Entertainment', 'Gifts', 'Miscellaneous', 'Others'],
+        labels: ['Savings', 'Education', 'Rent', 'Feeding', 'Entertainment', 'Gifts', 'Miscellaneous', 'Others', 'Transport'],
         datasets: [
           {
             label: 'Amount (₦)',
@@ -19,6 +19,7 @@ const VerticalBar = (props) => {
               'rgba(255, 159, 64, 0.2)',
               'rgba(87, 0, 78,0.2)',
               'rgba(23,89,199,0.2)',
+              'rgba(0,67,88,0.8)',
             ],
             borderColor: [
               'rgba(255, 99, 132, 1)',
@@ -29,6 +30,7 @@ const VerticalBar = (props) => {
               'rgba(255, 159, 64, 1)',
               'rgba(87, 0, 78,1)',
               'rgba(23,89,199,1)',
+              'rgba(0,67,88,1)',
             ],
             borderWidth: 1,
           },
