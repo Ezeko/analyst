@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getBudgetsDetails } from '../../../store/actions/budgetActions';
+import NavBar from '../../nav/Navbar'
 
 class Budgets extends Component{
     constructor(props){
@@ -16,6 +17,7 @@ class Budgets extends Component{
     render(){
         return(
             <React.Fragment>
+            <NavBar />
                 <div className='container center'>
                     <ul className=''>
                     {this.props.budgets && this.props.budgets !== undefined && Object.entries(this.props.budgets).map(data => {

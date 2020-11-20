@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { getBudget } from '../../store/actions/budgetActions'
 import moment from 'moment'
+import NavBar from '../nav/Navbar'
 
 class History extends Component{
     constructor(props){
@@ -20,7 +21,7 @@ class History extends Component{
         const {histories } = this.props
         return (
             <React.Fragment>
-                
+                <NavBar />
                 <table className='striped container'>
             <thead>
             <tr>

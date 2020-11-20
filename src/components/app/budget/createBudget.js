@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux';
 import { createBudget } from '../../../store/actions/budgetActions';
+import NavBar from '../../nav/Navbar'
 
 
 const CreateBudget = (props) => {
@@ -35,6 +36,7 @@ const CreateBudget = (props) => {
         {
             //console.log(props)
         }
+        <NavBar />
             <form className='container' onSubmit={handleSubmit}>
 
                 <div className='input-field col s12'>

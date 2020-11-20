@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import NavBar from '../../nav/Navbar'
 const { default: LineChart } = require("../../charts/line")
+
 
 class BudgetChart extends Component{
     constructor(props){
@@ -35,6 +37,7 @@ class BudgetChart extends Component{
         // console.log('data', data)
         return(
             <React.Fragment>
+            <NavBar />
             {
                 this.state.amount > 0 ?
                  <div className='container'>

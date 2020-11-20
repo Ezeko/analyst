@@ -1,10 +1,11 @@
+import React, { Component } from 'react'
 import { connect } from "react-redux"
 import { Redirect, Link} from "react-router-dom"
 import PieChart from "../charts/pie"
 import VerticalBar from "../charts/verticalBar"
 import moment from 'moment'
 import { getBudgetsDetails, getDashBudgets } from "../../store/actions/budgetActions"
-import { Component } from "react"
+import NavBar from '../nav/Navbar'
 
 class DashBoard extends Component {
     constructor(props){
@@ -37,6 +38,8 @@ class DashBoard extends Component {
         return <Redirect to='/' />
     }
     return (
+        <React.Fragment>
+        <NavBar />
         <div className='container section dashboard'>
             <div className='row'>
                 <div className='col m6'>
@@ -90,6 +93,7 @@ class DashBoard extends Component {
             }
             
         </div>
+        </React.Fragment>
     )
     }
 }

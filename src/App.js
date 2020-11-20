@@ -8,7 +8,7 @@ import './App.css';
 import VerticalBar from './components/charts/verticalBar';
 import PieChart from './components/charts/pie';
 import SignUP from './components/auth/Register';
-import NavBar from './components/nav/Navbar';
+//import NavBar from './components/nav/Navbar';
 import DashBoard from './components/dashboard';
 
 import History from './components/dashboard/history';
@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        
         <Switch>
           <Route exact path='/' component={SignIn} />
           <Route path='/register' component={SignUP} />
