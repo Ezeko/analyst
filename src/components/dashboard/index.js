@@ -29,9 +29,9 @@ class DashBoard extends Component {
         for (const stuff in this.props.budgets){
             values.push(this.props.budgets[stuff])
             addedValues += this.props.budgets[stuff]
-            console.log(stuff, this.props.budgets[stuff])
+            // console.log(stuff, this.props.budgets[stuff])
         }
-        console.log('values', values)
+        // console.log('values', values)
 
     if (!auth.uid){
         return <Redirect to='/' />

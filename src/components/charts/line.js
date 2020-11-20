@@ -3,13 +3,13 @@ import { Line } from '@reactchartjs/react-chart.js'
 
 
 
-const LineChart = () => {
+const LineChart = (props) => {
     const data = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        labels: props.labels,
         datasets: [
           {
             label: 'Amount (₦)',
-            data: [12, 19, 3, 5, 2, 3],
+            data: props.data,
             fill: false,
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -31,7 +31,7 @@ const LineChart = () => {
     return(
         <React.Fragment>
             <div className='header'>
-            <h1 className='title'>Savings</h1>
+            <h1 className='title'>{props.title}</h1>
             </div>
             <Line data={data} options={options} />
         </React.Fragment>
