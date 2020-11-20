@@ -37,9 +37,9 @@ class BudgetChart extends Component{
             <React.Fragment>
             {
                 this.state.amount > 0 ?
-                 <div>
+                 <div className='container'>
                 <div className='row'>
-                    <div className='col m9'>
+                    <div className='col-9'>
                     {data && labels ?
                     <LineChart title={this.props.match.params.budgetName} data={data} labels={labels}/>
                     : null}

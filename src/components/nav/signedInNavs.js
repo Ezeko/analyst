@@ -1,23 +1,26 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+// import { Link } from 'react-router-dom'
 const SignedInNavs = ({profile, logout}) => {
     return(
-        <React.Fragment >
-            <li style={{margin: 0}}>
-                <Link to='/create' className="btn-floating green darken-2">
-                    <i className="material-icons">add</i>
-                </Link>
-            </li>
-            <li style={{margin: 0}}>
-                <Link to='/budgets' className="btn-floating green"><i className="material-icons">remove_red_eye</i></Link>
-            </li>
-            <li>
-                <Link to='/' onClick={logout} className="btn-floating green darken-3"><i className="material-icons">logout</i></Link>
-            </li>
-            <li>
-                <Link to='/dashboard' className='btn-floating waves-effect'>{profile.initials}</Link>
-            </li>
-        </React.Fragment>
+        <>
+        <Navbar bg="light" expand="lg">
+  <Navbar.Brand href="/dashboard">Dashboard</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="/create" >Add Budget</Nav.Link>
+      <Nav.Link href="/budgets" >View Budgets</Nav.Link>
+      <Nav.Link href="#logout" onClick={logout} > Logout</Nav.Link>
+
+      
+    </Nav>
+    
+  </Navbar.Collapse>
+</Navbar>
+            
+        </>
     )
 };
 
